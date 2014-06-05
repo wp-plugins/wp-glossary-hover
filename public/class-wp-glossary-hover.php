@@ -24,7 +24,7 @@ class WP_Glossary_Hover {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.1.3';
+	const VERSION = '1.1.4';
 
 	/**
 	 * Instance of this class.
