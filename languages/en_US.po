@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Glossary Hover v1.0.0\n"
+"POT-Creation-Date: 2014-06-01 16:24-0500\n"
+"PO-Revision-Date: 2014-06-01 16:25-0500\n"
+"Last-Translator: Chris Horton <chorton2227@gmail.com>\n"
+"Language-Team: Chris Horton <chorton2227@gmail.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../admin/class-wp-glossary-hover-admin.php:224
+#: ../admin/class-wp-glossary-hover-admin.php:225
+#: ../admin/class-wp-glossary-hover-admin.php:482
+msgid "WP Glossary Hover"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:253
+msgid "Highlight First Occurrence Only"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:254
+msgid "When enabled only highlight first occurrence of term."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:261
+msgid "Case Sensitive"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:262
+msgid "When enabled highlight terms are case sensitive."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:269
+msgid "Enabled Post Types"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:270
+#: ../admin/class-wp-glossary-hover-admin.php:298
+msgid "Whether the tooltip should track (follow) the mouse."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:278
+msgid "Disabled Html Tags"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:279
+msgid "When checked, tags are not parsed for glossary terms."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:286
+#: ../admin/class-wp-glossary-hover-admin.php:304
+msgid "General Settings"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:287
+msgid "Basic settings for plugin behavior."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:297
+msgid "Track"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:315
+#: ../admin/class-wp-glossary-hover-admin.php:367
+msgid "Enabled"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:316
+#: ../admin/class-wp-glossary-hover-admin.php:368
+msgid ""
+"When disabled, no animation will be used and the tooltip will be hidden "
+"immediately."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:323
+#: ../admin/class-wp-glossary-hover-admin.php:375
+msgid "Effect"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:332
+#: ../admin/class-wp-glossary-hover-admin.php:384
+msgid "Delay"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:333
+#: ../admin/class-wp-glossary-hover-admin.php:341
+#: ../admin/class-wp-glossary-hover-admin.php:385
+#: ../admin/class-wp-glossary-hover-admin.php:393
+msgid "milliseconds"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:340
+#: ../admin/class-wp-glossary-hover-admin.php:392
+msgid "Duration"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:348
+#: ../admin/class-wp-glossary-hover-admin.php:400
+msgid "Easing"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:356
+msgid "Hide Settings"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:357
+msgid "If and how to animate the hiding of the tooltip."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:408
+msgid "Show Settings"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:409
+msgid "If and how to animate the showing of the tooltip."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:419
+msgid "Tooltip Theme"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:420
+msgid "jQuery UI theme for tooltip."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:427
+msgid "Tooltip Styles"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:428
+msgid "How the tooltip looks."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:438
+msgid "Link Color"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:446
+msgid "Link Underline"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:454
+msgid "Link Styles"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:455
+msgid "How the tooltip link looks on the page."
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:464
+msgid "General"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:470
+msgid "Tooltip"
+msgstr ""
+
+#: ../admin/class-wp-glossary-hover-admin.php:476
+msgid "Styles"
+msgstr ""
+
+#: ../admin/includes/fields/class-color-picker-field.php:77
+#, php-format
+msgid "Enter a valid color for %s"
+msgstr ""
+
+#: ../admin/includes/settings/class-plugin-settings.php:168
+msgid "Save Settings"
+msgstr ""
+
+#: ../admin/includes/settings/class-plugin-settings.php:169
+msgid "Reset Defaults"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:286
+#: ../public/class-wp-glossary-hover.php:288
+msgid "Glossary Terms"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:287
+#: ../public/class-wp-glossary-hover.php:289
+msgid "Glossary Term"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:290
+msgid "Add New"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:291
+msgid "Add New Glossary Term"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:292
+msgid "New Glossary Term"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:293
+msgid "Edit Glossary Term"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:294
+msgid "View Glossary Term"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:295
+msgid "All Glossary Terms"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:296
+msgid "Search Glossary Terms"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:297
+msgid "Parent Glossary Terms:"
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:298
+msgid "No glossary terms found."
+msgstr ""
+
+#: ../public/class-wp-glossary-hover.php:299
+msgid "No glossary terms found in Trash."
+msgstr ""
