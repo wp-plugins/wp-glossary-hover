@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=C57WL
 Tags: glossary, hover, definition
 Requires at least: 3.5.1
 Tested up to: 3.9.1
-Stable tag: 1.1.6
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,14 +56,8 @@ WP Glossary Hover adds helpful tooltips to user defined glossary terms. Terms ar
 
 == Changelog ==
 
-= 1.1.6 =
-* Update deploy script.
-
-= 1.1.5 =
-* Update deploy script.
-
-= 1.1.4 =
-* Update deploy script.
+= 1.2.0 =
+* Update svn repo.
 
 = 1.1.3 =
 * Update deploy script.
