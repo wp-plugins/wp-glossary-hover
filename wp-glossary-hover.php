@@ -15,7 +15,7 @@
  * Plugin Name:       WP Glossary Hover
  * Plugin URI:        https://github.com/chorton2227/WP-Glossary-Hover
  * Description:       When hovering over a word or phrase show the user created definition.
- * Version:           1.1.6
+ * Version:           1.0.0
  * Author:            Chris Horton <chorton2227@gmail.com>
  * Author URI:        https://github.com/chorton2227
  * Text Domain:       wp-glossary-hover

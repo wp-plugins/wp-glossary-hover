@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=C57WL
 Tags: glossary, hover, definition
 Requires at least: 3.5.1
 Tested up to: 3.9.1
-Stable tag: 1.1.6
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,31 +55,6 @@ WP Glossary Hover adds helpful tooltips to user defined glossary terms. Terms ar
 4. A screenshot of the tooltip in action.
 
 == Changelog ==
-
-= 1.1.6 =
-* Update deploy script.
-
-= 1.1.5 =
-* Update deploy script.
-
-= 1.1.4 =
-* Update deploy script.
-
-= 1.1.3 =
-* Update deploy script.
-
-= 1.1.2 =
-* Tested up to WordPress 3.9.1.
-* Move assets into svn assets.
-
-= 1.1.1 =
-* Add deploy script.
-
-= 1.1.0 =
-* Remove custom jquery ui file; use default jquery ui effects included with WordPress.
-
-= 1.0.1 =
-* Update plugin assets, remove banners and add screenshots.
 
 = 1.0.0 =
 * First release of plugin.
