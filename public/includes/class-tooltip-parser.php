@@ -128,8 +128,10 @@ class WPGH_Tooltip_Parser {
 			return $content;
 		}
 
+		$settings = $this->get_settings();
+
 		// Valid post type required
-		if ( ! in_array(get_post_type(), $this->get_settings()['general_enabled_post_types']))
+		if ( ! in_array(get_post_type(), $settings['general_enabled_post_types']))
 		{
 			return $content;
 		}
@@ -169,7 +171,7 @@ class WPGH_Tooltip_Parser {
 		}
 
 		// Keep track of highlighted terms
-		$highlight_first_occurrence = $this->get_settings()['general_highlight_first_occurrence'];
+		$highlight_first_occurrence = $settings['general_highlight_first_occurrence'];
 		$highlighted_terms = array();
 
 		// Check each node for glossary terms and add tooltip
@@ -237,8 +239,10 @@ class WPGH_Tooltip_Parser {
 	 */
 	private function get_xpath_query() {
 
+		$settings = $this->get_settings();
+
 		// Html tags to disable in xpath query
-		$disabled_tags = array_merge($this->disabled_tags, $this->get_settings()['general_disabled_tags']);
+		$disabled_tags = array_merge($this->disabled_tags, $settings['general_disabled_tags']);
 
 		// Default query
 		$query = $this->xpath_query;
@@ -261,11 +265,13 @@ class WPGH_Tooltip_Parser {
 	 * @return   string
 	 */
 	private function get_term_regex_pattern($term) {
+		
+		$settings = $this->get_settings();
 
 		$pattern = $this->term_regex_pattern;
 
 		// Add 'i' after pattern for case insensitive search
-		if ( ! $this->get_settings()['general_case_sensitive'])
+		if ( ! $settings['general_case_sensitive'])
 		{
 			$pattern .= 'i';
 		}

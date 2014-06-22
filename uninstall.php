@@ -9,9 +9,6 @@
  * @copyright 2014 Chris Horton
  */
 
-var_dump('test');
-die();
-
 // If uninstall not called from WordPress, then exit
 if ( ! defined('WP_UNINSTALL_PLUGIN')) {
 	exit;
