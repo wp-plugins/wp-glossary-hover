@@ -3,8 +3,8 @@ Contributors: chorton2227
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=C57WLBD5FWGQG&lc=US&item_name=WP%20Glossary%20Hover&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: glossary, hover, definition
 Requires at least: 3.5.1
-Tested up to: 3.9.1
-Stable tag: 1.1.0
+Tested up to: 4.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,9 +56,17 @@ WP Glossary Hover adds helpful tooltips to user defined glossary terms. Terms ar
 
 == Changelog ==
 
+= 1.2.0 =
+* Enabled comment support for glossary terms.
+* Added to enable links to glossary term pages.
+* Added setting to limit the tooltip length.
+* Escape html sepcial characters in definition.
+* Strip tags in tooltip definition, instead of escaping tags.
+* Fix description for `Enabled Post Types` setting.
+
 = 1.1.0 =
 * Fix fatal error on install.
-* Remove test code in uninstall.php
+* Remove test code in uninstall.php.
 
 = 1.0.1 =
 * Update README.txt.

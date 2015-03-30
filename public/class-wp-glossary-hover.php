@@ -24,15 +24,7 @@ class WP_Glossary_Hover {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.1.0';
-
-	/**
-	 * Instance of this class.
-	 *
-	 * @since    1.0.0
-	 * @var      object
-	 */
-	protected static $instance = null;
+	const VERSION = '1.2.0';
 
 	/**
 	 * Unique identifier for your plugin.
@@ -41,18 +33,26 @@ class WP_Glossary_Hover {
 	 * of text. Its value should match the Text Domain file header in the main
 	 * plugin file.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 * @var      string
 	 */
-	protected $plugin_slug = 'wp-glossary-hover';
+	const PLUGIN_SLUG = 'wp-glossary-hover';
 
 	/**
 	 * Unique identifier for custom post type.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 * @var      string
 	 */
-	protected $glossary_post_type = 'wpgh-glossary';
+	const GLOSSARY_POST_TYPE = 'wpgh-glossary';
+
+	/**
+	 * Instance of this class.
+	 *
+	 * @since    1.0.0
+	 * @var      object
+	 */
+	protected static $instance = null;
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -76,7 +76,7 @@ class WP_Glossary_Hover {
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 
 		// Add filter to the content
-		$tooltip_parser = new WPGH_Tooltip_Parser($this->glossary_post_type);
+		$tooltip_parser = new WPGH_Tooltip_Parser(WP_Glossary_Hover::GLOSSARY_POST_TYPE);
 		add_filter('the_content', array($tooltip_parser, 'parse_content'));
 
 	}
@@ -95,42 +95,6 @@ class WP_Glossary_Hover {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Returns array containing the settings for the plugin or false if settings not found.
-	 *
-	 * @since    1.0.0
-	 * @return   mixed
-	 */
-	public function get_settings() {
-
-		return get_option($this->plugin_slug);
-
-	}
-
-	/**
-	 * Return the plugin slug.
-	 *
-	 * @since     1.0.0
-	 * @return    string
-	 */
-	public function get_plugin_slug() {
-
-		return $this->plugin_slug;
-		
-	}
-
-	/**
-	 * Return unique identifier for custom post type.
-	 *
-	 * @since     1.0.0
-	 * @return    string
-	 */
-	public function get_glossary_post_type() {
-
-		return $this->glossary_post_type;
-		
 	}
 
 	/**
@@ -267,7 +231,7 @@ class WP_Glossary_Hover {
 	 */
 	public function load_plugin_textdomain() {
 
-		$domain = $this->plugin_slug;
+		$domain = WP_Glossary_Hover::PLUGIN_SLUG;
 		$locale = apply_filters('plugin_locale', get_locale(), $domain);
 
 		load_textdomain($domain, trailingslashit(WP_LANG_DIR) . $domain . '/' . $domain . '-' . $locale . '.mo');
@@ -280,23 +244,23 @@ class WP_Glossary_Hover {
 	*
 	* @link http://codex.wordpress.org/Function_Reference/register_post_type
 	*/
-	function wpgh_glossary_init() {
+	public function wpgh_glossary_init() {
 
 		$labels = array(
-			'name'               => __('Glossary Terms', $this->plugin_slug),
-			'singular_name'      => __('Glossary Term', $this->plugin_slug),
-			'menu_name'          => __('Glossary Terms', $this->plugin_slug),
-			'name_admin_bar'     => __('Glossary Term', $this->plugin_slug),
-			'add_new'            => __('Add New', $this->plugin_slug),
-			'add_new_item'       => __('Add New Glossary Term', $this->plugin_slug),
-			'new_item'           => __('New Glossary Term', $this->plugin_slug),
-			'edit_item'          => __('Edit Glossary Term', $this->plugin_slug),
-			'view_item'          => __('View Glossary Term', $this->plugin_slug),
-			'all_items'          => __('All Glossary Terms', $this->plugin_slug),
-			'search_items'       => __('Search Glossary Terms', $this->plugin_slug),
-			'parent_item_colon'  => __('Parent Glossary Terms:', $this->plugin_slug),
-			'not_found'          => __('No glossary terms found.', $this->plugin_slug),
-			'not_found_in_trash' => __('No glossary terms found in Trash.', $this->plugin_slug),
+			'name'               => __('Glossary Terms', WP_Glossary_Hover::PLUGIN_SLUG),
+			'singular_name'      => __('Glossary Term', WP_Glossary_Hover::PLUGIN_SLUG),
+			'menu_name'          => __('Glossary Terms', WP_Glossary_Hover::PLUGIN_SLUG),
+			'name_admin_bar'     => __('Glossary Term', WP_Glossary_Hover::PLUGIN_SLUG),
+			'add_new'            => __('Add New', WP_Glossary_Hover::PLUGIN_SLUG),
+			'add_new_item'       => __('Add New Glossary Term', WP_Glossary_Hover::PLUGIN_SLUG),
+			'new_item'           => __('New Glossary Term', WP_Glossary_Hover::PLUGIN_SLUG),
+			'edit_item'          => __('Edit Glossary Term', WP_Glossary_Hover::PLUGIN_SLUG),
+			'view_item'          => __('View Glossary Term', WP_Glossary_Hover::PLUGIN_SLUG),
+			'all_items'          => __('All Glossary Terms', WP_Glossary_Hover::PLUGIN_SLUG),
+			'search_items'       => __('Search Glossary Terms', WP_Glossary_Hover::PLUGIN_SLUG),
+			'parent_item_colon'  => __('Parent Glossary Terms:', WP_Glossary_Hover::PLUGIN_SLUG),
+			'not_found'          => __('No glossary terms found.', WP_Glossary_Hover::PLUGIN_SLUG),
+			'not_found_in_trash' => __('No glossary terms found in Trash.', WP_Glossary_Hover::PLUGIN_SLUG),
 		);
 
 		$args = array(
@@ -311,10 +275,10 @@ class WP_Glossary_Hover {
 			'has_archive'        => false,
 			'hierarchical'       => false,
 			'menu_position'      => null,
-			'supports'           => array('title', 'editor', 'author', 'revisions')
+			'supports'           => array('title', 'editor', 'author', 'revisions', 'comments')
 		);
 
-		register_post_type($this->glossary_post_type, $args);
+		register_post_type(WP_Glossary_Hover::GLOSSARY_POST_TYPE, $args);
 
 	}
 
@@ -325,17 +289,25 @@ class WP_Glossary_Hover {
 	 */
 	public function enqueue_styles() {
 
-		$settings = $this->get_settings();
+		$settings = WPGH_Plugin_Config::get_settings();
 
-		wp_enqueue_style($this->plugin_slug . '-plugin-styles', plugins_url('assets/css/public.css', __FILE__), array(), self::VERSION);
-		wp_enqueue_style($this->plugin_slug . '-jquery-ui-styles', plugins_url('vendor/jquery-ui/css/'.$settings['styles_tooltip_theme'].'/jquery-ui-1.10.4.custom.min.css', __FILE__), array(), self::VERSION);
+		wp_enqueue_style(WP_Glossary_Hover::PLUGIN_SLUG . '-plugin-styles', plugins_url('assets/css/public.css', __FILE__), array(), self::VERSION);
+		wp_enqueue_style(WP_Glossary_Hover::PLUGIN_SLUG . '-jquery-ui-styles', plugins_url('vendor/jquery-ui/css/'.$settings['styles_tooltip_theme'].'/jquery-ui-1.10.4.custom.min.css', __FILE__), array(), self::VERSION);
 
 		$custom_css = "
-		.wpgh-tooltip {
+		.wpgh-tooltip,
+		a.wpgh-tooltip,
+		a.wpgh-tooltip:hover,
+		a.wpgh-tooltip:focus,
+		.entry-content .wpgh-tooltip,
+		.entry-content a.wpgh-tooltip,
+		.entry-content a.wpgh-tooltip:hover,
+		.entry-content a.wpgh-tooltip:focus {
 			color: {$settings['styles_link_color']};
-			border-bottom: 1px {$settings['styles_link_underline']};
+			border-style: {$settings['styles_link_underline']};
+			border-bottom-width: 1px;
 		}";
-		wp_add_inline_style($this->plugin_slug . '-plugin-styles', $custom_css);
+		wp_add_inline_style(WP_Glossary_Hover::PLUGIN_SLUG . '-plugin-styles', $custom_css);
 
 	}
 
@@ -347,7 +319,7 @@ class WP_Glossary_Hover {
 	 */
 	public function enqueue_scripts() {
 
-		$settings = $this->get_settings();
+		$settings = WPGH_Plugin_Config::get_settings();
 
 		// Register jquery ui scripts for tooltip widget
 		wp_enqueue_script('jquery-ui-core');
@@ -360,7 +332,7 @@ class WP_Glossary_Hover {
 		wp_enqueue_script('jquery-effects-'.$settings['tooltip_show_effect']);
 
 		// Register script to create the tooltip for glossary terms
-		wp_enqueue_script($this->plugin_slug . '-plugin-script', plugins_url('assets/js/public.js', __FILE__), array('jquery'), self::VERSION);
+		wp_enqueue_script(WP_Glossary_Hover::PLUGIN_SLUG . '-plugin-script', plugins_url('assets/js/public.js', __FILE__), array('jquery'), self::VERSION);
 
 		$tooltip_settings = array(
 			'tooltip_general_track' => $settings['tooltip_general_track'],
@@ -376,7 +348,7 @@ class WP_Glossary_Hover {
 			'tooltip_show_easing' => $settings['tooltip_show_easing']
 		);
 
-		wp_localize_script($this->plugin_slug . '-plugin-script', 'wp_glossary_hover_tooltip_settings', $tooltip_settings);
+		wp_localize_script(WP_Glossary_Hover::PLUGIN_SLUG . '-plugin-script', 'wp_glossary_hover_tooltip_settings', $tooltip_settings);
 
 	}
 
