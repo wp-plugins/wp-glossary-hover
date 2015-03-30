@@ -18,14 +18,6 @@
 class WPGH_Plugin_Settings {
 
 	/**
-	 * Unique identifier for the plugin.
-	 *
-	 * @since    1.0.0
-	 * @var      string
-	 */
-	protected $plugin_slug = null;
-
-	/**
 	 * The title used to setup an options page.
 	 *
 	 * @see      http://codex.wordpress.org/Function_Reference/add_options_page
@@ -73,10 +65,6 @@ class WPGH_Plugin_Settings {
 	 * @since    1.0.0
 	 */
 	public function __construct($title, $slug, $capability, $settings) {
-
-		// Call $plugin_slug from public plugin class.
-		$plugin = WP_Glossary_Hover::get_instance();
-		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		// Class variables
 		$this->title = $title;
@@ -165,8 +153,8 @@ class WPGH_Plugin_Settings {
 				<?php endforeach; ?>
 
 				<p class="submit">
-					<input name="<?php echo $this->slug . '[' . $this->get_tab_submit_field_name($current_tab) . ']'; ?>" type="submit" class="button-primary" value="<?php esc_attr_e('Save Settings', $this->plugin_slug); ?>" />
-					<input name="<?php echo $this->slug . '[' . $this->get_tab_reset_field_name($current_tab) . ']'; ?>" type="submit" class="button-secondary" value="<?php esc_attr_e('Reset Defaults', $this->plugin_slug); ?>" />
+					<input name="<?php echo $this->slug . '[' . $this->get_tab_submit_field_name($current_tab) . ']'; ?>" type="submit" class="button-primary" value="<?php esc_attr_e('Save Settings', WP_Glossary_Hover::PLUGIN_SLUG); ?>" />
+					<input name="<?php echo $this->slug . '[' . $this->get_tab_reset_field_name($current_tab) . ']'; ?>" type="submit" class="button-secondary" value="<?php esc_attr_e('Reset Defaults', WP_Glossary_Hover::PLUGIN_SLUG); ?>" />
 				</p>
 
 			</form>
@@ -184,11 +172,29 @@ class WPGH_Plugin_Settings {
 	 */
 	public function settings_init() {
 
+		$update_settings = false;
 		$settings = $this->get_settings();
+		$default_settings = $this->get_default_settings();
 
 		// Set plugin defaults
 		if (false === $settings) {
-			$settings = $this->get_default_settings();
+			$settings = $default_settings;
+			$update_settings = true;
+		}
+		// Add default values for missing settings
+		else {
+			foreach ($default_settings AS $key => $value)
+			{
+				if (!array_key_exists($key, $settings))
+				{
+					$settings[$key] = $value;
+					$update_settings = true;
+				}
+			}
+		}
+
+		// Update settings
+		if ($update_settings) {
 			update_option($this->slug, $settings);
 		}
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Glossary Hover v1.0.0\n"
-"POT-Creation-Date: 2014-06-01 16:24-0500\n"
-"PO-Revision-Date: 2014-06-01 16:25-0500\n"
+"Project-Id-Version: WP Glossary Hover v1.2.0\n"
+"POT-Creation-Date: 2015-03-29 19:38-0500\n"
+"PO-Revision-Date: 2015-03-29 19:38-0500\n"
 "Last-Translator: Chris Horton <chorton2227@gmail.com>\n"
 "Language-Team: Chris Horton <chorton2227@gmail.com>\n"
 "Language: en_US\n"
@@ -21,216 +21,235 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../admin/class-wp-glossary-hover-admin.php:224
-#: ../admin/class-wp-glossary-hover-admin.php:225
-#: ../admin/class-wp-glossary-hover-admin.php:482
+#: ../admin/class-wp-glossary-hover-admin.php:84
+#: ../admin/class-wp-glossary-hover-admin.php:85
+#: ../includes/class-plugin-config.php:262
 msgid "WP Glossary Hover"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:253
+#: ../includes/class-plugin-config.php:290
 msgid "Highlight First Occurrence Only"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:254
+#: ../includes/class-plugin-config.php:291
 msgid "When enabled only highlight first occurrence of term."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:261
+#: ../includes/class-plugin-config.php:298
 msgid "Case Sensitive"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:262
+#: ../includes/class-plugin-config.php:299
 msgid "When enabled highlight terms are case sensitive."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:269
+#: ../includes/class-plugin-config.php:306
 msgid "Enabled Post Types"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:270
-#: ../admin/class-wp-glossary-hover-admin.php:298
-msgid "Whether the tooltip should track (follow) the mouse."
+#: ../includes/class-plugin-config.php:307
+msgid "When checked, the post type items will be parsed for glossary terms."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:278
+#: ../includes/class-plugin-config.php:315
 msgid "Disabled Html Tags"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:279
+#: ../includes/class-plugin-config.php:316
 msgid "When checked, tags are not parsed for glossary terms."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:286
-#: ../admin/class-wp-glossary-hover-admin.php:304
+#: ../includes/class-plugin-config.php:323
+#: ../includes/class-plugin-config.php:357
 msgid "General Settings"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:287
+#: ../includes/class-plugin-config.php:324
 msgid "Basic settings for plugin behavior."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:297
+#: ../includes/class-plugin-config.php:334
+msgid "Limit number of characters"
+msgstr ""
+
+#: ../includes/class-plugin-config.php:335
+msgid "characters <em>(Disabled when set to 0)</em>"
+msgstr ""
+
+#: ../includes/class-plugin-config.php:342
+msgid "Link to glossary term page"
+msgstr ""
+
+#: ../includes/class-plugin-config.php:343
+msgid "Whether the glossary term should link to the glossary term page."
+msgstr ""
+
+#: ../includes/class-plugin-config.php:350
 msgid "Track"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:315
-#: ../admin/class-wp-glossary-hover-admin.php:367
+#: ../includes/class-plugin-config.php:351
+msgid "Whether the tooltip should track (follow) the mouse."
+msgstr ""
+
+#: ../includes/class-plugin-config.php:368
+#: ../includes/class-plugin-config.php:420
 msgid "Enabled"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:316
-#: ../admin/class-wp-glossary-hover-admin.php:368
+#: ../includes/class-plugin-config.php:369
+#: ../includes/class-plugin-config.php:421
 msgid ""
 "When disabled, no animation will be used and the tooltip will be hidden "
 "immediately."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:323
-#: ../admin/class-wp-glossary-hover-admin.php:375
+#: ../includes/class-plugin-config.php:376
+#: ../includes/class-plugin-config.php:428
 msgid "Effect"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:332
-#: ../admin/class-wp-glossary-hover-admin.php:384
+#: ../includes/class-plugin-config.php:385
+#: ../includes/class-plugin-config.php:437
 msgid "Delay"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:333
-#: ../admin/class-wp-glossary-hover-admin.php:341
-#: ../admin/class-wp-glossary-hover-admin.php:385
-#: ../admin/class-wp-glossary-hover-admin.php:393
+#: ../includes/class-plugin-config.php:386
+#: ../includes/class-plugin-config.php:394
+#: ../includes/class-plugin-config.php:438
+#: ../includes/class-plugin-config.php:446
 msgid "milliseconds"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:340
-#: ../admin/class-wp-glossary-hover-admin.php:392
+#: ../includes/class-plugin-config.php:393
+#: ../includes/class-plugin-config.php:445
 msgid "Duration"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:348
-#: ../admin/class-wp-glossary-hover-admin.php:400
+#: ../includes/class-plugin-config.php:401
+#: ../includes/class-plugin-config.php:453
 msgid "Easing"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:356
+#: ../includes/class-plugin-config.php:409
 msgid "Hide Settings"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:357
+#: ../includes/class-plugin-config.php:410
 msgid "If and how to animate the hiding of the tooltip."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:408
+#: ../includes/class-plugin-config.php:461
 msgid "Show Settings"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:409
+#: ../includes/class-plugin-config.php:462
 msgid "If and how to animate the showing of the tooltip."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:419
+#: ../includes/class-plugin-config.php:472
 msgid "Tooltip Theme"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:420
+#: ../includes/class-plugin-config.php:473
 msgid "jQuery UI theme for tooltip."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:427
+#: ../includes/class-plugin-config.php:480
 msgid "Tooltip Styles"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:428
+#: ../includes/class-plugin-config.php:481
 msgid "How the tooltip looks."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:438
+#: ../includes/class-plugin-config.php:491
 msgid "Link Color"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:446
+#: ../includes/class-plugin-config.php:499
 msgid "Link Underline"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:454
+#: ../includes/class-plugin-config.php:507
 msgid "Link Styles"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:455
+#: ../includes/class-plugin-config.php:508
 msgid "How the tooltip link looks on the page."
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:464
+#: ../includes/class-plugin-config.php:517
 msgid "General"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:470
+#: ../includes/class-plugin-config.php:523
 msgid "Tooltip"
 msgstr ""
 
-#: ../admin/class-wp-glossary-hover-admin.php:476
+#: ../includes/class-plugin-config.php:529
 msgid "Styles"
 msgstr ""
 
-#: ../admin/includes/fields/class-color-picker-field.php:77
+#: ../includes/fields/class-color-picker-field.php:73
 #, php-format
 msgid "Enter a valid color for %s"
 msgstr ""
 
-#: ../admin/includes/settings/class-plugin-settings.php:168
+#: ../includes/settings/class-plugin-settings.php:156
 msgid "Save Settings"
 msgstr ""
 
-#: ../admin/includes/settings/class-plugin-settings.php:169
+#: ../includes/settings/class-plugin-settings.php:157
 msgid "Reset Defaults"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:286
-#: ../public/class-wp-glossary-hover.php:288
+#: ../public/class-wp-glossary-hover.php:250
+#: ../public/class-wp-glossary-hover.php:252
 msgid "Glossary Terms"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:287
-#: ../public/class-wp-glossary-hover.php:289
+#: ../public/class-wp-glossary-hover.php:251
+#: ../public/class-wp-glossary-hover.php:253
 msgid "Glossary Term"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:290
+#: ../public/class-wp-glossary-hover.php:254
 msgid "Add New"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:291
+#: ../public/class-wp-glossary-hover.php:255
 msgid "Add New Glossary Term"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:292
+#: ../public/class-wp-glossary-hover.php:256
 msgid "New Glossary Term"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:293
+#: ../public/class-wp-glossary-hover.php:257
 msgid "Edit Glossary Term"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:294
+#: ../public/class-wp-glossary-hover.php:258
 msgid "View Glossary Term"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:295
+#: ../public/class-wp-glossary-hover.php:259
 msgid "All Glossary Terms"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:296
+#: ../public/class-wp-glossary-hover.php:260
 msgid "Search Glossary Terms"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:297
+#: ../public/class-wp-glossary-hover.php:261
 msgid "Parent Glossary Terms:"
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:298
+#: ../public/class-wp-glossary-hover.php:262
 msgid "No glossary terms found."
 msgstr ""
 
-#: ../public/class-wp-glossary-hover.php:299
+#: ../public/class-wp-glossary-hover.php:263
 msgid "No glossary terms found in Trash."
 msgstr ""

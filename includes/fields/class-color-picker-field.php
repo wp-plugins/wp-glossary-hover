@@ -32,10 +32,6 @@ class WPGH_Color_Picker_Field extends WPGH_Base_Field {
 
 		parent::__construct($setting_name, $id, $title, WPGH_Field_Types_Enum::ColorPicker, $description, $default);
 
-		// Call $plugin_slug from public plugin class.
-		$plugin = WP_Glossary_Hover::get_instance();
-		$this->plugin_slug = $plugin->get_plugin_slug();
-
 		// Load style sheet and javascript for color picker
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
@@ -74,7 +70,7 @@ class WPGH_Color_Picker_Field extends WPGH_Base_Field {
 		$value = strip_tags(stripslashes($value));
 
 		if (FALSE === $this->check_color($value)) {
-			add_settings_error($this->id, 'invalid-color', sprintf(__('Enter a valid color for %s', $this->plugin_slug), $this->title), 'error');
+			add_settings_error($this->id, 'invalid-color', sprintf(__('Enter a valid color for %s', WP_Glossary_Hover::PLUGIN_SLUG), $this->title), 'error');
 
 			$value = null;
 		}
@@ -101,7 +97,7 @@ class WPGH_Color_Picker_Field extends WPGH_Base_Field {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script($this->plugin_slug . '-color-picker', plugins_url('../../assets/js/color-picker.js', __FILE__), array('wp-color-picker'), WP_Glossary_Hover::VERSION, true);
+		wp_enqueue_script(WP_Glossary_Hover::PLUGIN_SLUG . '-color-picker', plugins_url('../../admin/assets/js/color-picker.js', __FILE__), array('wp-color-picker'), WP_Glossary_Hover::VERSION, true);
 
 	}
 

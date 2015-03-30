@@ -62,12 +62,28 @@ class WPGH_Tooltip_Parser {
 	protected $term_regex_pattern = '/(\b%s\b)(?![^<]*>|[^<>]*<\/)/';
 
 	/**
-	 * String format for creating tooltip html tag.
+	 * String format used when limiting the number of characters.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 * @var      string
 	 */
-	protected $tooltip_html = '<span class="wpgh-tooltip" title="%s">%s</span>';
+	protected $tooltip_more = '%s...';
+
+	/**
+	 * String format for creating tooltip span tag.
+	 *
+	 * @since    1.2.0
+	 * @var      string
+	 */
+	protected $tooltip_span_html = '<span class="wpgh-tooltip" title="%s">%s</span>';
+
+	/**
+	 * String format for creating tooltip link tag.
+	 *
+	 * @since    1.2.0
+	 * @var      string
+	 */
+	protected $tooltip_link_html = '<a class="wpgh-tooltip" href="%s" title="%s">%s</a>';
 
 	/**
 	 * Initialize the plugin by setting the post type.
@@ -79,20 +95,6 @@ class WPGH_Tooltip_Parser {
 		$this->post_type = $post_type;
 
 	}
-
-	/**
-	 * Returns array containing the settings for the plugin or false if settings not found.
-	 *
-	 * @since    1.0.0
-	 * @return   mixed
-	 */
-	public static function get_settings() {
-
-		$plugin = WP_Glossary_Hover::get_instance();
-		return $plugin->get_settings();
-
-	}
-
 	/**
 	 * Returns WP_Query object with glossary terms.
 	 *
@@ -128,8 +130,10 @@ class WPGH_Tooltip_Parser {
 			return $content;
 		}
 
+		$settings = WPGH_Plugin_Config::get_settings();
+
 		// Valid post type required
-		if ( ! in_array(get_post_type(), $this->get_settings()['general_enabled_post_types']))
+		if ( ! in_array(get_post_type(), $settings['general_enabled_post_types']))
 		{
 			return $content;
 		}
@@ -169,7 +173,7 @@ class WPGH_Tooltip_Parser {
 		}
 
 		// Keep track of highlighted terms
-		$highlight_first_occurrence = $this->get_settings()['general_highlight_first_occurrence'];
+		$highlight_first_occurrence = $settings['general_highlight_first_occurrence'];
 		$highlighted_terms = array();
 
 		// Check each node for glossary terms and add tooltip
@@ -199,7 +203,7 @@ class WPGH_Tooltip_Parser {
 				$replace_limit = ($highlight_first_occurrence) ? 1 : -1;
 
 				// Add tooltip
-				$tooltip = $this->get_tooltip_html($term->post_title, $term->post_content);
+				$tooltip = $this->get_tooltip_html($term->ID, $term->post_title, $term->post_content);
 				$nodeValue = preg_replace($pattern, $tooltip, $nodeValue, $replace_limit);
 				$updateNode = true; // Node needs to be updated
 
@@ -237,8 +241,10 @@ class WPGH_Tooltip_Parser {
 	 */
 	private function get_xpath_query() {
 
+		$settings = WPGH_Plugin_Config::get_settings();
+
 		// Html tags to disable in xpath query
-		$disabled_tags = array_merge($this->disabled_tags, $this->get_settings()['general_disabled_tags']);
+		$disabled_tags = array_merge($this->disabled_tags, $settings['general_disabled_tags']);
 
 		// Default query
 		$query = $this->xpath_query;
@@ -261,11 +267,13 @@ class WPGH_Tooltip_Parser {
 	 * @return   string
 	 */
 	private function get_term_regex_pattern($term) {
+		
+		$settings = WPGH_Plugin_Config::get_settings();
 
 		$pattern = $this->term_regex_pattern;
 
 		// Add 'i' after pattern for case insensitive search
-		if ( ! $this->get_settings()['general_case_sensitive'])
+		if ( ! $settings['general_case_sensitive'])
 		{
 			$pattern .= 'i';
 		}
@@ -278,13 +286,66 @@ class WPGH_Tooltip_Parser {
 	 * Returns html for tooltip.
 	 *
 	 * @since    1.0.0
+	 * @param    string    $id            Term Post ID.
 	 * @param    string    $term          Glossary Term.
 	 * @param    string    $definition    Definition of glossary term.
 	 * @return   string
 	 */
-	private function get_tooltip_html($term, $definition) {
+	private function get_tooltip_html($id, $term, $definition) {
+		
+		$settings = WPGH_Plugin_Config::get_settings();
+		$link = $settings['tooltip_general_link'];
+		
+		$definition = $this->clean_definition($definition);
+		$definition = $this->limit_characters_in_definition($definition);
 
-		return sprintf($this->tooltip_html, esc_html($definition), $term);
+		if ($link)
+		{
+			$permalink = get_permalink($id);
+			return sprintf($this->tooltip_link_html, $permalink, $definition, $term);
+		}
+
+		return sprintf($this->tooltip_span_html, $definition, $term);
+
+	}
+
+	/**
+	 * Strip tags and escape special characters once.
+	 *
+	 * @since    1.2.0
+	 * @param    string    $definition    Definition of glossary term.
+	 * @return   string
+	 */
+	private function clean_definition($definition) {
+
+		$definition = strip_tags($definition);
+		$definition = htmlspecialchars(htmlspecialchars_decode($definition));
+		return $definition;
+
+	}
+
+	/**
+	 * Limit characters in definition, based on setting and length of definition. 
+	 *
+	 * @since    1.2.0
+	 * @param    string    $definition    Definition of glossary term.
+	 * @return   string
+	 */
+	private function limit_characters_in_definition($definition) {
+		
+		$settings = WPGH_Plugin_Config::get_settings();
+		$limit_characters = $settings['tooltip_general_limit_characters'];
+
+		// Check if limit characters setting has been set
+		// Check if the current definition is longer than the set limit
+		if ($limit_characters > 0 && strlen($definition) > $limit_characters)
+		{
+			// Limit number of characters in defintion
+			$definition = substr($definition, 0, $limit_characters);
+			$definition = sprintf($this->tooltip_more, $definition);
+		}
+
+		return $definition;
 
 	}
 
