@@ -86,6 +86,22 @@ class WPGH_Tooltip_Parser {
 	protected $tooltip_link_html = '<a class="wpgh-tooltip" href="%s" title="%s">%s</a>';
 
 	/**
+	 * The encoding used when converting characters. 
+	 *
+	 * @since    1.2.1
+	 * @var      string
+	 */
+	protected $encoding = 'UTF-8';
+
+	/**
+	 * Regex string pattern to trim whitespace and punctuation from end of definition.
+	 *
+	 * @since    1.2.1
+	 * @var      string
+	 */
+	protected $trim_regex_pattern = '/[^\w\d]+$/m';
+
+	/**
 	 * Initialize the plugin by setting the post type.
 	 *
 	 * @since     1.0.0
@@ -154,7 +170,7 @@ class WPGH_Tooltip_Parser {
 		$dom = new DOMDocument();
 
 		// Convert content to properly handle UTF-8 encoding
-		$html = mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
+		$html = mb_convert_encoding($content, 'HTML-ENTITIES', $this->encoding);
 
 		// Html must load correctly to allow parsing
 		if (FALSE === $dom->loadHtml($html))
@@ -229,7 +245,24 @@ class WPGH_Tooltip_Parser {
 		libxml_use_internal_errors(false);
 
 		// Return updated html with tooltips
-		return $dom->saveHTML();
+		$html = $dom->saveHTML();
+		$html = $this->cleanHTML($html);
+		return $html;
+
+	}
+
+	/**
+	 * Clean the html. Remove the DOCTYPE. Remove the <html> and <body> tags.
+	 *
+	 * @since     1.2.1
+	 * @param     string    $html    The html to clean.
+	 * @return    string
+	 */
+	private function cleanHTML($html) {
+
+		$html = preg_replace('/^<!DOCTYPE.+?>/', '', $html);
+		$html = str_replace(array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $html);
+		return $html;
 
 	}
 
@@ -292,13 +325,11 @@ class WPGH_Tooltip_Parser {
 	 * @return   string
 	 */
 	private function get_tooltip_html($id, $term, $definition) {
-		
+
 		$settings = WPGH_Plugin_Config::get_settings();
 		$link = $settings['tooltip_general_link'];
-		
 		$definition = $this->clean_definition($definition);
-		$definition = $this->limit_characters_in_definition($definition);
-
+		
 		if ($link)
 		{
 			$permalink = get_permalink($id);
@@ -310,16 +341,28 @@ class WPGH_Tooltip_Parser {
 	}
 
 	/**
-	 * Strip tags and escape special characters once.
+	 * Decode html entities before cleaning definition. Strip all tags and
+	 * limit the number characters in the definition, if required.
+	 * Trim all non alpha-numeric characters from the end of the definition.
+	 * Add the read more '...' formatting.
 	 *
+	 * Do not re-encode html entities.
+	 *
+	 * @see      http://php.net/html_entity_decode
 	 * @since    1.2.0
 	 * @param    string    $definition    Definition of glossary term.
 	 * @return   string
 	 */
 	private function clean_definition($definition) {
 
+		// Default flags used by html_entity_decode
+		$encoding_flags = ENT_COMPAT | ENT_HTML401;
+
+		$definition = html_entity_decode($definition, $encoding_flags, $this->encoding);
 		$definition = strip_tags($definition);
-		$definition = htmlspecialchars(htmlspecialchars_decode($definition));
+		$definition = $this->limit_characters_in_definition($definition);
+		$definition = preg_replace($this->trim_regex_pattern, '', $definition);
+		$definition = sprintf($this->tooltip_more, $definition);
 		return $definition;
 
 	}
@@ -340,9 +383,16 @@ class WPGH_Tooltip_Parser {
 		// Check if the current definition is longer than the set limit
 		if ($limit_characters > 0 && strlen($definition) > $limit_characters)
 		{
-			// Limit number of characters in defintion
+			// Limit number of characters in definition
 			$definition = substr($definition, 0, $limit_characters);
-			$definition = sprintf($this->tooltip_more, $definition);
+
+			// Find last occurrence of whitespace within limit
+			$position = strrpos($definition, ' ');
+
+			// Cut at last whitespace within limit
+			if (FALSE !== $position) {
+				$definition = substr($definition, 0, $position);
+			}
 		}
 
 		return $definition;
