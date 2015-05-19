@@ -344,11 +344,10 @@ class WPGH_Tooltip_Parser {
 	 * Decode html entities before cleaning definition. Strip all tags and
 	 * limit the number characters in the definition, if required.
 	 * Trim all non alpha-numeric characters from the end of the definition.
-	 * Add the read more '...' formatting.
-	 *
-	 * Do not re-encode html entities.
+	 * Add the read more '...' formatting. Re-encode defintion to XML.
 	 *
 	 * @see      http://php.net/html_entity_decode
+	 * @see      http://php.net/htmlentities
 	 * @since    1.2.0
 	 * @param    string    $definition    Definition of glossary term.
 	 * @return   string
@@ -356,13 +355,17 @@ class WPGH_Tooltip_Parser {
 	private function clean_definition($definition) {
 
 		// Default flags used by html_entity_decode
-		$encoding_flags = ENT_COMPAT | ENT_HTML401;
+		$decoding_flags = ENT_COMPAT | ENT_HTML401;
 
-		$definition = html_entity_decode($definition, $encoding_flags, $this->encoding);
+		// Encode definition to XML
+		$encoding_flags = ENT_COMPAT | ENT_XML1;
+
+		$definition = html_entity_decode($definition, $decoding_flags, $this->encoding);
 		$definition = strip_tags($definition);
 		$definition = $this->limit_characters_in_definition($definition);
 		$definition = preg_replace($this->trim_regex_pattern, '', $definition);
 		$definition = sprintf($this->tooltip_more, $definition);
+		$definition = htmlentities($definition, $encoding_flags, $this->encoding);
 		return $definition;
 
 	}

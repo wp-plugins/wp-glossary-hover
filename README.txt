@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=C57WL
 Tags: glossary, hover, definition
 Requires at least: 3.5.1
 Tested up to: 4.2.2
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ WP Glossary Hover adds helpful tooltips to user defined glossary terms. Terms ar
 4. A screenshot of the tooltip in action.
 
 == Changelog ==
+
+= 1.2.2 =
+* Fix encoding between html and xml entities.
 
 = 1.2.1 =
 * Decode html entities before adding them as xml.
