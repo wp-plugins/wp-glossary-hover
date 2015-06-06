@@ -384,6 +384,14 @@ class WPGH_Tooltip_Parser {
 			// Limit number of characters in definition
 			$definition = substr($definition, 0, $limit_characters);
 
+			// Find last occurrence of whitespace within limit
+			$position = strrpos($definition, ' ');
+			
+			// Cut at last whitespace within limit
+			if (FALSE !== $position) {
+				$definition = substr($definition, 0, $position);
+			}
+
 			// Trim any non-alphanumeric characters from end of definition
 			$definition = preg_replace($this->trim_regex_pattern, '', $definition);
 
