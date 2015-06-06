@@ -234,8 +234,7 @@ class WPGH_Tooltip_Parser {
 			// Value changed, update node value
 			if ($updateNode)
 			{
-				$newNode = $dom->createDocumentFragment();
-				$newNode->appendXML($nodeValue);
+				$newNode = $dom->createCDATASection($nodeValue);
 				$node->parentNode->replaceChild($newNode, $node);
 			}
 		}
@@ -341,37 +340,33 @@ class WPGH_Tooltip_Parser {
 	}
 
 	/**
-	 * Decode html entities before cleaning definition. Strip all tags and
-	 * limit the number characters in the definition, if required.
-	 * Trim all non alpha-numeric characters from the end of the definition.
-	 * Add the read more '...' formatting. Re-encode defintion to XML.
+	 * Strip all tags and limit the number characters in the definition, if required.
+	 * Encode double and single quotes.
 	 *
-	 * @see      http://php.net/html_entity_decode
-	 * @see      http://php.net/htmlentities
+	 * @see      http://php.net/en/htmlentities
 	 * @since    1.2.0
 	 * @param    string    $definition    Definition of glossary term.
 	 * @return   string
 	 */
 	private function clean_definition($definition) {
 
-		// Default flags used by html_entity_decode
-		$decoding_flags = ENT_COMPAT | ENT_HTML401;
-
-		// Encode definition to XML
-		$encoding_flags = ENT_COMPAT | ENT_XML1;
-
-		$definition = html_entity_decode($definition, $decoding_flags, $this->encoding);
+		// Remove any html tags
 		$definition = strip_tags($definition);
+
+		// Limit characters
 		$definition = $this->limit_characters_in_definition($definition);
-		$definition = preg_replace($this->trim_regex_pattern, '', $definition);
-		$definition = sprintf($this->tooltip_more, $definition);
-		$definition = htmlentities($definition, $encoding_flags, $this->encoding);
+
+		// Encode double and single quotes
+		$definition = htmlentities($definition, ENT_QUOTES, $this->encoding);
+
 		return $definition;
 
 	}
 
 	/**
-	 * Limit characters in definition, based on setting and length of definition. 
+	 * Limit characters in definition, based on setting and length of definition.
+	 * If definition needs to be limited, trim all non-alphanumeric characters
+	 * from the end of the definition and append the more formatting.
 	 *
 	 * @since    1.2.0
 	 * @param    string    $definition    Definition of glossary term.
@@ -389,13 +384,11 @@ class WPGH_Tooltip_Parser {
 			// Limit number of characters in definition
 			$definition = substr($definition, 0, $limit_characters);
 
-			// Find last occurrence of whitespace within limit
-			$position = strrpos($definition, ' ');
+			// Trim any non-alphanumeric characters from end of definition
+			$definition = preg_replace($this->trim_regex_pattern, '', $definition);
 
-			// Cut at last whitespace within limit
-			if (FALSE !== $position) {
-				$definition = substr($definition, 0, $position);
-			}
+			// Append the more formatting
+			$definition = sprintf($this->tooltip_more, $definition);
 		}
 
 		return $definition;
